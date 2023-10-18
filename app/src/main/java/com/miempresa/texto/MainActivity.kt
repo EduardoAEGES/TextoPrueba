@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -22,6 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -89,17 +91,22 @@ fun Textito(){
             )
         }
         Row(modifier = Modifier.padding(5.dp)) {
-            var texto by remember({mutableStateOf("")})
-            var texto2 by remember({mutableStateOf("")})
+            var texto by remember { mutableStateOf("") }
+            var texto2 by remember { mutableStateOf("") }
             TextField(
                 value = texto,
                 onValueChange = {texto = it},
+                colors = TextFieldDefaults.textFieldColors(
+                    selectionColors = TextSelectionColors(Color.Yellow,Color.Green),
+                    textColor = Color.Red, containerColor = Color.LightGray),
                 modifier = Modifier.weight(1f), label = { Text(text = "Nombres")})
             Spacer(modifier = Modifier.width(5.dp))
             TextField(
                 value = texto2,
                 onValueChange = {texto2 = it},
-                modifier = Modifier.weight(1f),label= { Text(text = "Apellidos") })
+                colors = TextFieldDefaults.textFieldColors(containerColor = Color.Cyan),
+                modifier = Modifier.weight(1f),label= { Text(text = "Apellidos") }
+            )
         }
 
     }
